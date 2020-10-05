@@ -36,3 +36,4 @@ with open('{0}/manifest.tsv'.format(pth), 'w') as file:
 		file.write('\n{0}\t{1}\t{2}'.format(a, b, c))
 		
 print('Ran without errors')
+exit()
