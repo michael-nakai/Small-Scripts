@@ -68,6 +68,8 @@ dWeighted$data$Vectors$SampleID <- as.character(dWeighted$data$Vectors$SampleID)
 if (categorical) {
   for (dividing_category in divide) {
     
+    newOutputPath <- paste0(OutputPath, dividing_category, "/")
+    dir.create(newOutputPath)
     total_int_vec <- c(1:final_axis) # Should be (1, 2, 3, 4, 5)
     
     for (initial_PC_number in c(1:(final_axis-1))) { # Should be (1, 2, 3, 4), since the y axis wont ever have the final axis
@@ -196,6 +198,8 @@ if (categorical) {
 } else {
   for (dividing_category in divide) {
     
+    newOutputPath <- paste0(OutputPath, dividing_category, "/")
+    dir.create(newOutputPath)
     total_int_vec <- c(1:final_axis) # Should be (1, 2, 3, 4, 5)
     
     for (initial_PC_number in c(1:(final_axis-1))) { # Should be (1, 2, 3, 4), since the y axis wont ever have the final axis

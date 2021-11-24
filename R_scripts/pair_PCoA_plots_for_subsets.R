@@ -63,8 +63,8 @@ for (filename in subset_namelist) {
   dMetadataPath <- metadata_list[magicnum]
 
   # Make a new directory to store all the outputs for this subset into
-  final_outputpath <- paste0(newOutputPath, subset_namelist[magicnum])
-  dir.create(final_outputpath)
+  prefinal_outputpath <- paste0(newOutputPath, subset_namelist[magicnum])
+  dir.create(prefinal_outputpath)
 
   # Other variable stuff
   dUnweightedPath <- paste(dPath, "core-metrics-results/unweighted_unifrac_pcoa_results.qza", sep="") # Check if there's underscores in your filepath!
@@ -83,6 +83,8 @@ for (filename in subset_namelist) {
   if (categorical) {
     for (dividing_category in divide) {
       
+      final_outputpath <- paste0(prefinal_outputpath, dividing_category, "/")
+      dir.create(newOutputPath)
       total_int_vec <- c(1:final_axis) # Should be (1, 2, 3, 4, 5)
       
       for (initial_PC_number in c(1:(final_axis-1))) { # Should be (1, 2, 3, 4), since the y axis wont ever have the final axis
@@ -211,6 +213,8 @@ for (filename in subset_namelist) {
   } else {
     for (dividing_category in divide) {
       
+      final_outputpath <- paste0(prefinal_outputpath, dividing_category, "/")
+      dir.create(newOutputPath)
       total_int_vec <- c(1:final_axis) # Should be (1, 2, 3, 4, 5)
       
       for (initial_PC_number in c(1:(final_axis-1))) { # Should be (1, 2, 3, 4), since the y axis wont ever have the final axis
