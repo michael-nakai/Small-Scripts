@@ -10,13 +10,13 @@ library(RColorBrewer)
 ### File Paths
 
 # General path to the folder that the folder "core-metrics-results" is in
-dPath <- "/home/michael/test/cait_stuff/dataset/"
+dPath <- "/home/mnak0010/dw30_scratch/mnak0010/Workshop/outputs/230-169/"
 
 # Finding paths
-dMetadataPath <- "/home/michael/test/cait_stuff/dataset/metadata.txt"
+dMetadataPath <- "/home/mnak0010/dw30_scratch/mnak0010/Workshop/metadata_new.tsv"
 
 # File output path
-newOutputPath <- "/home/michael/test/cait_stuff/pcoa/outputs/human_all/"
+newOutputPath <- "/home/mnak0010/dw30_scratch/mnak0010/Workshop/R_outputs/"
 
 # ----
 
@@ -32,15 +32,15 @@ PC1_axis = "x"
 categorical <- TRUE
 
 # What metadata category do we want to divide by (can assign multiple categories)
-divide <- c("PatientID")
+divide <- c("TreatmentGroup")
 
 # How large should the PCoA sample points be on the plot?
 pointsize = 3
 
 # If your data is categorical, then give the colors to use per category below
-#colorvec <- c("#0141Cf", "#FD7F00") #Blue and Orange
+colorvec <- c("#0141Cf", "#FD7F00") #Blue and Orange
 #colorvec <- c("#96DEAE", "#F4676C") #Red and Green
-colorvec <- c(brewer.pal(8, "Dark2"), brewer.pal(6, "Pastel1")) #If you have a lot of colors
+#colorvec <- c(brewer.pal(8, "Dark2"), brewer.pal(6, "Pastel1")) #If you have a lot of colors
 
 # If your data is continuous, give the colors for the low and high end of the scale
 colorLow <- "#F78848" #Blue
@@ -102,7 +102,7 @@ if (categorical) {
         if (PC1_axis == "y") {
         
           # Unweighted PCoA Code
-          dUnweighted$data$Vectors %>%
+          (dUnweighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>%
             ggplot(aes_string(x = x_PC_axis_str,
@@ -115,7 +115,7 @@ if (categorical) {
             xlab(xTitle1) + 
             ylab(yTitle1) +
             theme(text = element_text(size=18)) +
-            scale_color_manual(values = colorvec) +
+            scale_color_manual(values = colorvec)) %>%
             ggsave(filename = dUnweightedFilename,
                    dpi = 600,
                    height = 6,
@@ -124,7 +124,7 @@ if (categorical) {
                    path = newOutputPath)
           
           # Weighted PCoA Code
-          dWeighted$data$Vectors %>%
+          (dWeighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>% 
             ggplot(aes_string(x = x_PC_axis_str,
@@ -137,7 +137,7 @@ if (categorical) {
             xlab(xTitle2) +
             ylab(yTitle2) +
             theme(text = element_text(size=18)) +
-            scale_color_manual(values = colorvec) +
+            scale_color_manual(values = colorvec)) %>%
             ggsave(filename = dWeightedFilename,
                    dpi = 600,
                    device = "png",
@@ -147,7 +147,7 @@ if (categorical) {
           
         } else if (PC1_axis == "x") {
           # Unweighted PCoA Code
-          dUnweighted$data$Vectors %>%
+          (dUnweighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>%
             ggplot(aes_string(x = y_PC_axis_str,
@@ -160,7 +160,7 @@ if (categorical) {
             xlab(yTitle1) + 
             ylab(xTitle1) +
             theme(text = element_text(size=18)) +
-            scale_color_manual(values = colorvec) +
+            scale_color_manual(values = colorvec)) %>%
             ggsave(filename = dUnweightedFilename,
                    dpi = 600,
                    height = 6,
@@ -169,7 +169,7 @@ if (categorical) {
                    path = newOutputPath)
           
           # Weighted PCoA Code
-          dWeighted$data$Vectors %>%
+          (dWeighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>% 
             ggplot(aes_string(x = y_PC_axis_str,
@@ -182,7 +182,7 @@ if (categorical) {
             xlab(yTitle2) +
             ylab(xTitle2) +
             theme(text = element_text(size=18)) +
-            scale_color_manual(values = colorvec) +
+            scale_color_manual(values = colorvec)) %>%
             ggsave(filename = dWeightedFilename,
                    dpi = 600,
                    device = "png",
@@ -230,7 +230,7 @@ if (categorical) {
         if (PC1_axis == "y") {
         
           # Unweighted PCoA Code
-          dUnweighted$data$Vectors %>%
+          (dUnweighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>%
             ggplot(aes_string(x = x_PC_axis_str,
@@ -244,7 +244,7 @@ if (categorical) {
             ylab(yTitle1) +
             theme(text = element_text(size=18)) +
             scale_color_gradient(low=colorLow,
-                                 high=colorHigh) +
+                                 high=colorHigh)) %>%
             ggsave(filename = dUnweightedFilename,
                    dpi = 600,
                    height = 6,
@@ -253,7 +253,7 @@ if (categorical) {
                    path = newOutputPath)
           
           # Weighted PCoA Code
-          dWeighted$data$Vectors %>%
+          (dWeighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>% 
             ggplot(aes_string(x = x_PC_axis_str,
@@ -267,7 +267,7 @@ if (categorical) {
             ylab(yTitle2) +
             theme(text = element_text(size=18)) +
             scale_color_gradient(low=colorLow,
-                                 high=colorHigh) +
+                                 high=colorHigh)) %>%
             ggsave(filename = dWeightedFilename,
                    dpi = 600,
                    device = "png",
@@ -277,7 +277,7 @@ if (categorical) {
           
         } else if (PC1_axis == "x") {
           # Unweighted PCoA Code
-          dUnweighted$data$Vectors %>%
+          (dUnweighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>%
             ggplot(aes_string(x = y_PC_axis_str,
@@ -291,7 +291,7 @@ if (categorical) {
             ylab(xTitle1) +
             theme(text = element_text(size=18)) +
             scale_color_gradient(low=colorLow,
-                                 high=colorHigh) +
+                                 high=colorHigh)) %>%
             ggsave(filename = dUnweightedFilename,
                    dpi = 600,
                    height = 6,
@@ -300,7 +300,7 @@ if (categorical) {
                    path = newOutputPath)
           
           # Weighted PCoA Code
-          dWeighted$data$Vectors %>%
+          (dWeighted$data$Vectors %>%
             select(one_of(cols_we_need)) %>%
             left_join(dMetadata) %>% 
             ggplot(aes_string(x = y_PC_axis_str,
@@ -314,7 +314,7 @@ if (categorical) {
             ylab(xTitle2) +
             theme(text = element_text(size=18)) +
             scale_color_gradient(low=colorLow,
-                                 high=colorHigh) +
+                                 high=colorHigh)) %>%
             ggsave(filename = dWeightedFilename,
                    dpi = 600,
                    device = "png",

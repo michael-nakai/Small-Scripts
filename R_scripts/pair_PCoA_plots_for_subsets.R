@@ -117,7 +117,7 @@ for (filename in subset_namelist) {
           if (PC1_axis == "y") {
           
             # Unweighted PCoA Code
-            dUnweighted$data$Vectors %>%
+            (dUnweighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>%
               ggplot(aes_string(x = x_PC_axis_str,
@@ -130,7 +130,7 @@ for (filename in subset_namelist) {
               xlab(xTitle1) + 
               ylab(yTitle1) +
               theme(text = element_text(size=18)) +
-              scale_color_manual(values = colorvec) +
+              scale_color_manual(values = colorvec)) %>%
               ggsave(filename = dUnweightedFilename,
                      dpi = 600,
                      height = 6,
@@ -139,7 +139,7 @@ for (filename in subset_namelist) {
                      path = final_outputpath)
             
             # Weighted PCoA Code
-            dWeighted$data$Vectors %>%
+            (dWeighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>% 
               ggplot(aes_string(x = x_PC_axis_str,
@@ -152,7 +152,7 @@ for (filename in subset_namelist) {
               xlab(xTitle2) +
               ylab(yTitle2) +
               theme(text = element_text(size=18)) +
-              scale_color_manual(values = colorvec) +
+              scale_color_manual(values = colorvec)) %>%
               ggsave(filename = dWeightedFilename,
                      dpi = 600,
                      device = "png",
@@ -162,7 +162,7 @@ for (filename in subset_namelist) {
             
           } else if (PC1_axis == "x") {
             # Unweighted PCoA Code
-            dUnweighted$data$Vectors %>%
+            (dUnweighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>%
               ggplot(aes_string(x = y_PC_axis_str,
@@ -175,7 +175,7 @@ for (filename in subset_namelist) {
               xlab(yTitle1) + 
               ylab(xTitle1) +
               theme(text = element_text(size=18)) +
-              scale_color_manual(values = colorvec) +
+              scale_color_manual(values = colorvec)) %>%
               ggsave(filename = dUnweightedFilename,
                      dpi = 600,
                      height = 6,
@@ -184,7 +184,7 @@ for (filename in subset_namelist) {
                      path = final_outputpath)
             
             # Weighted PCoA Code
-            dWeighted$data$Vectors %>%
+            (dWeighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>% 
               ggplot(aes_string(x = y_PC_axis_str,
@@ -197,7 +197,7 @@ for (filename in subset_namelist) {
               xlab(yTitle2) +
               ylab(xTitle2) +
               theme(text = element_text(size=18)) +
-              scale_color_manual(values = colorvec) +
+              scale_color_manual(values = colorvec)) %>%
               ggsave(filename = dWeightedFilename,
                      dpi = 600,
                      device = "png",
@@ -245,7 +245,7 @@ for (filename in subset_namelist) {
           if (PC1_axis == "y") {
           
             # Unweighted PCoA Code
-            dUnweighted$data$Vectors %>%
+            (dUnweighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>%
               ggplot(aes_string(x = x_PC_axis_str,
@@ -259,7 +259,7 @@ for (filename in subset_namelist) {
               ylab(yTitle1) +
               theme(text = element_text(size=18)) +
               scale_color_gradient(low=colorLow,
-                                   high=colorHigh) +
+                                   high=colorHigh)) %>%
               ggsave(filename = dUnweightedFilename,
                      dpi = 600,
                      height = 6,
@@ -268,7 +268,7 @@ for (filename in subset_namelist) {
                      path = final_outputpath)
             
             # Weighted PCoA Code
-            dWeighted$data$Vectors %>%
+            (dWeighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>% 
               ggplot(aes_string(x = x_PC_axis_str,
@@ -282,7 +282,7 @@ for (filename in subset_namelist) {
               ylab(yTitle2) +
               theme(text = element_text(size=18)) +
               scale_color_gradient(low=colorLow,
-                                   high=colorHigh) +
+                                   high=colorHigh)) %>%
               ggsave(filename = dWeightedFilename,
                      dpi = 600,
                      device = "png",
@@ -292,7 +292,7 @@ for (filename in subset_namelist) {
             
           } else if (PC1_axis == "x") {
             # Unweighted PCoA Code
-            dUnweighted$data$Vectors %>%
+            (dUnweighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>%
               ggplot(aes_string(x = y_PC_axis_str,
@@ -306,7 +306,7 @@ for (filename in subset_namelist) {
               ylab(xTitle1) +
               theme(text = element_text(size=18)) +
               scale_color_gradient(low=colorLow,
-                                   high=colorHigh) +
+                                   high=colorHigh)) %>%
               ggsave(filename = dUnweightedFilename,
                      dpi = 600,
                      height = 6,
@@ -315,7 +315,7 @@ for (filename in subset_namelist) {
                      path = final_outputpath)
             
             # Weighted PCoA Code
-            dWeighted$data$Vectors %>%
+            (dWeighted$data$Vectors %>%
               select(one_of(cols_we_need)) %>%
               left_join(dMetadata) %>% 
               ggplot(aes_string(x = y_PC_axis_str,
@@ -329,7 +329,7 @@ for (filename in subset_namelist) {
               ylab(xTitle2) +
               theme(text = element_text(size=18)) +
               scale_color_gradient(low=colorLow,
-                                   high=colorHigh) +
+                                   high=colorHigh)) %>%
               ggsave(filename = dWeightedFilename,
                      dpi = 600,
                      device = "png",
